@@ -3,22 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing</title>
-    <!--
-    (for flask)
-    <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
+    <title>Movie App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
-    -->
-    <link rel="stylesheet" href="../static/landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Track Your Movie's</h1>
-        <p>search for movies, add them to your watch list, and see reveiws.</p>
-        <div class="nav-buttons">
-            <a href="#">Login</a>
-            <a href="#">Sign Up</a>
-        </div>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="nav-item active">
+                <a href="#">Browse</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">Trending</a>
+            </div>
+            <div class="nav-item">
+                <a href="#">Watchlist</a>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <div class="search-bar">
+                <input type="text" placeholder="Search for movies...">
+                <div class="auth-links">
+                    <a href="/login" class="auth-link">Sign In</a>
+                    <a href="/signup" class="auth-link">Sign Up</a>
+                </div>
+            </div>
+            
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1>Trending Now</h1>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>9/10</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <div class="section-header">
+                    <h2>Section Header</h2>
+                    <span class="view-all">estark</span>
+                </div>
+                
+                <div class="movie-grid">
+                    <div class="movie-card">
+                        <div class="movie-poster"></div>
+                        <div class="movie-info">
+                            <h3>The Office</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>9/10</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More movie cards can be added here -->
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 </html>

@@ -1,4 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+import os
+from dotenv import load_dotenv
+from supabase import create_client, Client
+
+# Load environment variables
+load_dotenv()
+
+# Initialize Supabase client
+supabase_url = os.environ.get("REACT_APP_SUPABASE_URL")
+supabase_key = os.environ.get("REACT_APP_SUPABASE_ANON_KEY")
+supabase: Client = create_client(supabase_url, supabase_key)
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a secure random key in production
@@ -13,11 +24,21 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         
-        # Here you would typically validate the user credentials
-        # For now, we'll just redirect back to the landing page
-        # In a real app, you would add authentication logic
-        
-        return redirect(url_for('landing'))
+        # Authenticate user with Supabase
+        try:
+            response = supabase.auth.sign_in_with_password({"email": email, "password": password})
+            
+            # Store user session data
+            session['user'] = {
+                'id': response.user.id,
+                'email': response.user.email,
+            }
+            
+            flash('Login successful!', 'success')
+            return redirect(url_for('landing'))
+            
+        except Exception as e:
+            flash(f'Login failed: {str(e)}', 'error')
     
     return render_template('login.html')
 
@@ -28,13 +49,36 @@ def signup():
         password = request.form.get('password')
         verify_password = request.form.get('verify-password')
         
-        # Here you would typically validate the form data and create a new user
-        # For now, we'll just redirect back to the landing page
-        # In a real app, you would add user creation logic
+        # Validate password match
+        if password != verify_password:
+            flash('Passwords do not match!', 'error')
+            return render_template('signup.html')
         
-        return redirect(url_for('landing'))
+        # Register user with Supabase
+        try:
+            response = supabase.auth.sign_up({
+                "email": email,
+                "password": password
+            })
+            
+            flash('Registration successful! Please check your email to confirm your account.', 'success')
+            return redirect(url_for('login'))
+            
+        except Exception as e:
+            flash(f'Registration failed: {str(e)}', 'error')
     
     return render_template('signup.html')
+
+@app.route('/logout')
+def logout():
+    # Sign out from Supabase
+    supabase.auth.sign_out()
+    
+    # Clear session
+    session.clear()
+    
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('landing'))
 
 if __name__ == '__main__':
     app.run(debug=True)

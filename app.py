@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import os
+from dotenv import load_dotenv
 from supabase import create_client, Client
 
-# Direct Supabase credentials
-supabase_url = "https://gpfljnclvvwogzvmrtku.supabase.co"
-supabase_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwZmxqbmNsdnZ3b2d6dm1ydGt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4Nzg5MTQsImV4cCI6MjA2MTQ1NDkxNH0.9_2vn4JmwC54IkwItneVIhHZqaWuti3BC9hZSRshwC8"
+# Loads Supabase credentials from .env
+load_dotenv()
+supabase_url = os.getenv("SUPABASE_URL")
+supabase_key = os.getenv("SUPABASE_ANON_KEY")
 
 # Initialize Supabase client
 supabase: Client = create_client(supabase_url, supabase_key)

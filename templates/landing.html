@@ -58,22 +58,22 @@
             <section class="section">
                 <div class="section-header">
                     <h2>Section Header</h2>
-                    <span class="view-all">estark</span>
                 </div>
-                
                 <div class="movie-grid">
-                    <div class="movie-card">
-                        <div class="movie-poster"></div>
-                        <div class="movie-info">
-                            <h3>The Office</h3>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <span>9/10</span>
-                            </div>
+                    {% for m in movies %}
+                      <div class="movie-card">
+                        <div class="movie-poster">
+                          <img src="https://image.tmdb.org/t/p/w300{{ m.poster_path }}" alt="{{ m.title }}">
                         </div>
-                    </div>
-                    <!-- More movie cards can be added here -->
-                </div>
+                        <div class="movie-info">
+                          <h3>{{ m.title }}</h3>
+                          <div class="rating">
+                            <span>{{ m.vote_average }}/10</span>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
             </section>
         </main>
     </div>

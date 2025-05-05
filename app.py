@@ -2,11 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
+import requests
 
-# Loads Supabase credentials from .env
+# Loads from .env
 load_dotenv()
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_ANON_KEY")
+tmdb_key = os.getenv("TMDB_API_KEY")
+tmdb_base_url = os.getenv("TMDB_BASE_URL")
 
 # Initialize Supabase client
 supabase: Client = create_client(supabase_url, supabase_key)
@@ -14,9 +17,19 @@ supabase: Client = create_client(supabase_url, supabase_key)
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a secure random key in production
 
+# Get data from api
+def tmdb_get(path, params=None):
+    params = params or {}
+    params["api_key"] = tmdb_key
+    resp = requests.get(f"{tmdb_base_url}/{path}", params=params)
+    resp.raise_for_status()
+    return resp.json()
+
 @app.route('/')
 def landing():
-    return render_template('landing.html')
+    data = tmdb_get("movie/popular", {"page": 1})
+    movies = data["results"][:8]
+    return render_template('landing.html', movies=movies)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

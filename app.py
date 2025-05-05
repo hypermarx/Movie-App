@@ -28,7 +28,7 @@ def tmdb_get(path, params=None):
 @app.route('/')
 def landing():
     data = tmdb_get("movie/popular", {"page": 1})
-    movies = data["results"][:8]
+    movies = data["results"][:16]
     return render_template('landing.html', movies=movies)
 
 @app.route('/login', methods=['GET', 'POST'])

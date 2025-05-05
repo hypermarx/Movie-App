@@ -13,12 +13,14 @@
             <div class="nav-item active">
                 <a href="#">Browse</a>
             </div>
+            <!--
             <div class="nav-item">
                 <a href="#">Trending</a>
             </div>
             <div class="nav-item">
                 <a href="#">Watchlist</a>
             </div>
+            -->
         </nav>
         
         <main class="content">
@@ -44,7 +46,8 @@
                     {% endif %}
                 </div>
             </div>
-            
+        
+            <!--
             <section class="hero-section">
                 <div class="hero-content">
                     <h1>Trending Now</h1>
@@ -54,10 +57,11 @@
                     </div>
                 </div>
             </section>
+            -->
             
             <section class="section">
                 <div class="section-header">
-                    <h2>Section Header</h2>
+                    <h2>Most Popular</h2>
                 </div>
                 <div class="movie-grid">
                     {% for m in movies %}
@@ -68,7 +72,7 @@
                         <div class="movie-info">
                           <h3>{{ m.title }}</h3>
                           <div class="rating">
-                            <span>{{ m.vote_average }}/10</span>
+                            <span>{{ m.vote_average|round(1) }}/10</span>
                           </div>
                         </div>
                       </div>

@@ -38,6 +38,11 @@ def landing():
     tmdb_data = tmdb_get_data()
     return render_template('landing.html', tmdb_data=tmdb_data)
 
+@app.route('/detail/<title>')
+def detail(title):
+    tmdb_data = tmdb_get_data()
+    return render_template('detail.html', title=title, tmdb_data=tmdb_data)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':

@@ -11,7 +11,7 @@
     <div class="app-container">
         <nav class="sidebar">
             <div class="nav-item active">
-                <a href="#">Browse</a>
+                <a href="/">Browse</a>
             </div>
             <!--
             <div class="nav-item">
@@ -64,8 +64,9 @@
                     <h2>{{ category_name.replace('_', ' ').title() }}</h2>
                 </div>
                 <div class="movie-grid">
-                    {% for m in category_data['results'][:18] %}
-                      <div class="movie-card">
+                    {% for m in category_data['results'][0:18] %}
+                    <a href="{{ url_for('detail', title=m.title|default(m.name)) }}">  
+                    <div class="movie-card">
                         <div class="movie-poster">
                           <img src="https://image.tmdb.org/t/p/w300{{ m.poster_path }}" alt="{{ m.title|default(m.name) }}">
                         </div>
@@ -76,9 +77,10 @@
                             <span>{{ m.vote_average|round(1) }}/10</span>
                           </div>
                         </div>
-                      </div>
+                    </div>
                     {% endfor %}
-                  </div>
+                    </a>
+                </div>
             </section>
             {% endfor %}
         </main>

@@ -25,11 +25,18 @@ def tmdb_get(path, params=None):
     resp.raise_for_status()
     return resp.json()
 
+def tmdb_get_data():
+    return {
+        "popular_movies": tmdb_get("movie/popular", {"page": 1}),
+        "top_rated_movies": tmdb_get("movie/top_rated", {"page": 1}),
+        "popular_tv_shows": tmdb_get("tv/popular", {"page": 1}),
+        "top_rated_tv_shows": tmdb_get("tv/top_rated", {"page": 1})
+    }
+
 @app.route('/')
 def landing():
-    data = tmdb_get("movie/popular", {"page": 1})
-    movies = data["results"][:16]
-    return render_template('landing.html', movies=movies)
+    tmdb_data = tmdb_get_data()
+    return render_template('landing.html', tmdb_data=tmdb_data)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

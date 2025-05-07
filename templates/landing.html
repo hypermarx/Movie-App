@@ -58,20 +58,21 @@
                 </div>
             </section>
             -->
-            
+            {% for category_name, category_data in tmdb_data.items() %}
             <section class="section">
                 <div class="section-header">
-                    <h2>Most Popular</h2>
+                    <h2>{{ category_name.replace('_', ' ').title() }}</h2>
                 </div>
                 <div class="movie-grid">
-                    {% for m in movies %}
+                    {% for m in category_data['results'][:18] %}
                       <div class="movie-card">
                         <div class="movie-poster">
-                          <img src="https://image.tmdb.org/t/p/w300{{ m.poster_path }}" alt="{{ m.title }}">
+                          <img src="https://image.tmdb.org/t/p/w300{{ m.poster_path }}" alt="{{ m.title|default(m.name) }}">
                         </div>
                         <div class="movie-info">
-                          <h3>{{ m.title }}</h3>
+                          <h3>{{ m.title|default(m.name) }}</h3>
                           <div class="rating">
+                            <i class="fas fa-star"></i>
                             <span>{{ m.vote_average|round(1) }}/10</span>
                           </div>
                         </div>
@@ -79,6 +80,7 @@
                     {% endfor %}
                   </div>
             </section>
+            {% endfor %}
         </main>
     </div>
 </body>

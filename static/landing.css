@@ -172,7 +172,7 @@ body {
     position: relative;
     overflow: hidden;
 }
-*/
+
 
 .hero-section::after {
     content: "";
@@ -190,6 +190,7 @@ body {
     font-size: 36px;
     margin-bottom: 10px;
 }
+*/
 
 .rating {
     display: flex;
@@ -202,6 +203,9 @@ body {
 }
 
 /* Section Headers */
+.section {
+    margin-bottom: 30px;
+}
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -210,7 +214,7 @@ body {
 }
 
 .section-header h2 {
-    font-size: 24px;
+    font-size: 34px;
 }
 
 .view-all {
@@ -224,7 +228,7 @@ body {
 /* Movie Grid */
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 20px;
 }
 
@@ -235,7 +239,7 @@ body {
     display: flex;
     flex-direction: column;    
     align-items: flex-start;
-    width: 200px;
+    width: 260px;
     margin: 0 auto;
 }
   

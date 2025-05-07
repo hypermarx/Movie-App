@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='detail.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="nav-item active">
+                <a href="/">Browse</a>
+            </div>
+        </nav>
+        
+        <main class="content">         
+            <div class="search-bar">
+                <input type="text" placeholder="Search for movies...">
+                <div class="auth-links">
+                    {% if session.get('user') %}
+                        <span class="user-email">{{ session['user']['email'] }}</span>
+                        <a href="/logout" class="auth-link">Logout</a>
+                    {% else %}
+                        <a href="/login" class="auth-link">Sign In</a>
+                        <a href="/signup" class="auth-link">Sign Up</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="detail-card">
+                {% for category_name, category_data in tmdb_data.items() %}
+                    {% for m in category_data['results'][0:18] %}
+                        {% if m.title|default(m.name) == title %}
+
+                        <div class="default-poster">
+                            <img src="https://image.tmdb.org/t/p/w300{{ m.poster_path }}" alt="{{ m.title|default(m.name) }}">
+                        </div>
+                        <div class="detail-info">
+                            <h3>{{ m.title|default(m.name) }}</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>{{ m.vote_average|round(1) }}/10</span>
+                            </div>
+                            <div class="detail-overview">
+                                <span>{{ m.overview}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>

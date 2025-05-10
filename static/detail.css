@@ -190,3 +190,28 @@ body {
     color: #ddd;
     margin-right: 30px;
 }
+
+.review {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.review textarea {
+    flex: 1;
+    max-width: 1200px;
+    min-height: 80px;
+    width: auto;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    font-size: 16px;
+    font-family:'Arial', sans-serif;
+}
+
+.review textarea::placeholder {
+    color: #aaaaaa;
+}

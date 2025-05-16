@@ -38,6 +38,7 @@ def landing():
     tmdb_data = tmdb_get_data()
     return render_template('landing.html', tmdb_data=tmdb_data)
 
+# Stores reviews; Might be better web functionality wise if reviews are instead stored in an app
 global reviewlist
 
 @app.route('/detail/<title>', methods =['GET', 'POST'])

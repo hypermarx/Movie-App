@@ -50,24 +50,27 @@
                     {% endfor %}
                 {% endfor %}
             </div>
-            <div class = "review">
-                <textarea type = "review" placeholder="Leave a review..."></textarea>
-                <button type="submitReview" class="submit">Submit</button>
-                <!-- Display a list of reviews based on what the submit button adds -->
-                 <div class = "reviews">
-                    {% for item in reviewlist %}
-                        {% if item['Title'] == title %}
-                            <div class = "reviewDisplay">
-                                <div class = "reviewUser">
-                                   {{ item['User'].email }}
-                                </div>
-                                <div class = "reviewText">
-                                    {{ item['Body'] }}
-                                </div>
+            <form method = "POST">
+                <div class = "review">
+                    <textarea type = "review" placeholder="Leave a review..."></textarea>
+                    <button type="submitReview" class="submit">Submit</button>
+                </div>
+            </form>
+            <!-- Display a list of reviews based on what the submit button adds -->
+            <div class = "reviews">
+                {% for item in reviewlist %}
+                    <!-- Reviews do not currently display, reason unclear -->
+                    {% if item['Title'] == title %}
+                        <div class = "reviewDisplay">
+                            <div class = "reviewUser">
+                                <h3>{{ item['User'].email }}</h3>
                             </div>
-                        {% endif %}
-                    {% endfor %}
-                 </div>
+                            <div class = "reviewText">
+                                <h3>{{ item['Body'] }}</h3>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </main>
     </div>

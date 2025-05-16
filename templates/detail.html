@@ -56,13 +56,13 @@
                 <!-- Display a list of reviews based on what the submit button adds -->
                  <div class = "reviews">
                     {% for item in reviewlist %}
-                        {% if item['Title'] == title % }
+                        {% if item['Title'] == title %}
                             <div class = "reviewDisplay">
                                 <div class = "reviewUser">
-                                   {% item['User'].email %}
+                                   {{ item['User'].email }}
                                 </div>
                                 <div class = "reviewText">
-                                    {% item['Body'] %}
+                                    {{ item['Body'] }}
                                 </div>
                             </div>
                         {% endif %}

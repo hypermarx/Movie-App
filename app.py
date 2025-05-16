@@ -55,6 +55,7 @@ def submitReview():
         else:
             review = {'Title' : '<title>', 'User' : supabase.auth.get_user(), "Body" : text}
             reviewlist.append(review)
+            redirect(url_for('/detail/<title'))
 # def userError():
     # Display text below the submit button that says "You must be logged in to post reviews."
 

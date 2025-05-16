@@ -136,6 +136,7 @@ body {
     gap: 32px;
     max-width: 900px;
     margin: 0px auto;
+    margin-left: 0px;
     padding: 16px;
     background: #181818;
     border-radius: 25px;
@@ -210,8 +211,29 @@ body {
     color: #ffffff;
     font-size: 16px;
     font-family:'Arial', sans-serif;
+    field-sizing: content;
+    resize: none;
 }
 
 .review textarea::placeholder {
     color: #aaaaaa;
+}
+
+.submit {
+    width: 150px;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    background-color: #e91e63;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.submit:hover {
+    background-color: #d81b60;
 }

@@ -38,10 +38,25 @@ def landing():
     tmdb_data = tmdb_get_data()
     return render_template('landing.html', tmdb_data=tmdb_data)
 
-@app.route('/detail/<title>')
+global reviewlist
+
+@app.route('/detail/<title>', methods =['GET', 'POST'])
 def detail(title):
     tmdb_data = tmdb_get_data()
     return render_template('detail.html', title=title, tmdb_data=tmdb_data)
+def submitReview():
+    if request.method == "POST":
+        text = request.form.get('review')
+        if (not(supabase.auth.get_user())):
+            userError()
+        elif(text.strip() == ""):
+            return 0
+            # Do nothing if review is empty
+        else:
+            review = {'Title' : '<title>', 'User' : supabase.auth.get_user(), "Body" : text}
+            reviewlist.append(review)
+# def userError():
+    # Display text below the submit button that says "You must be logged in to post reviews."
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

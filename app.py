@@ -41,6 +41,7 @@ def landing():
 # Stores reviews; Might be better web functionality wise if reviews are instead stored in an app
 global reviewlist
 
+# Detail page: Eashwar Sridharan
 @app.route('/detail/<title>', methods =['GET', 'POST'])
 def detail(title):
     tmdb_data = tmdb_get_data()

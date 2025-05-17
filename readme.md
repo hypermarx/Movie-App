@@ -40,6 +40,7 @@ Date: April 16th 2025
 - If you encounter any Werkzeug or Supabase related errors, use the specific versions mentioned above
 - For Anaconda users: You may need to use `conda deactivate` before creating the virtual environment
 
-Github Link: https://github.com/RaisinBranSnail/Movie-App
+Github Link: https://github.com/hypermarx/Movie-App.git
+Comment on submission explains some of the circumstances with this branch.
 Trello: https://trello.com/invite/b/67fd8a4e413ca1f57a826735/ATTI057f94e891a24aa8a4715fab79f9d42b17C8B67D/cst205-group-project
 Future work: TBA

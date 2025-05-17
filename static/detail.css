@@ -192,6 +192,8 @@ body {
     margin-right: 30px;
 }
 
+/* CSS for review section - Eashwar Sridharan */
+
 .review {
     display: flex;
     justify-content: space-between;
